@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 from symbolic_toolbox.base import SymbolicModel
 
-m = pickle.load(open("preda-predatore.p"))
+m = pickle.load(open("predator–prey.p"))
 assert isinstance(m, SymbolicModel)
 t = range(100)
 

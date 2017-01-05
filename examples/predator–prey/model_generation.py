@@ -28,7 +28,7 @@ def f(x, t, u):
     return dx
 
 GasSymbolicModelBuilder(a, 0.1, f).build()
-pickle.dump(a, open("preda-predatore.p", "w"))
+pickle.dump(a, open("predator–prey.p", "w"))
 
 """
 print "Dimensione Modello Simbolico: %s kb" % (asizeof.asizeof(a)/1000)

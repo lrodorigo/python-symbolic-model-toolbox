@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad84a0c6-831a-4de7-bbe2-615a964a9ea0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/markdown-navigator.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/examples/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/model_analyze.py" afterPath="$PROJECT_DIR$/examples/model_analyze.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/preda-predatore.p" afterPath="$PROJECT_DIR$/examples/preda-predatore.p" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="python-symbolic-model-toolbox.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,7 +44,7 @@
         </entry>
       </file>
       <file leaf-file-name="model_analyze.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model_analyze.py">
+        <entry file="file://$PROJECT_DIR$/examples/model_analyze.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
               <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
@@ -231,7 +231,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="symbolic_toolbox" />
+              <option name="myItemId" value="examples" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -248,6 +248,10 @@
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/examples" />
+      <recent name="$PROJECT_DIR$/example-models" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -284,7 +288,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="python-symbolic-model-toolbox" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model_analyze.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/examples/model_analyze.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -577,7 +581,7 @@
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/model_analyze.py</url>
+          <url>file://$PROJECT_DIR$/examples/model_analyze.py</url>
           <line>21</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
@@ -631,7 +635,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/preda-predatore.p">
+    <entry file="file://$PROJECT_DIR$/examples/preda-predatore.p">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="9" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
@@ -639,7 +643,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model_analyze.py">
+    <entry file="file://$PROJECT_DIR$/examples/model_analyze.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
