@@ -1,3 +1,7 @@
+import numpy as np
+import scipy.integrate
+import time
+
 from symbolic_toolbox.base import SymbolicModel
 
 
@@ -11,12 +15,21 @@ class GasSymbolicModelBuilder(object):
         self.f = f
 
     def build(self):
-
+        interval = np.array([0, self.tau])
+        delta1, delta2, delta3 = 0,0,0
         for index_v, v in self.symbolic_model.iterate_over_states_values():
             for index_u, u in self.symbolic_model.iterate_over_control_values():
-                #f = lambda t, x: self.f(t, x, u)
-                _u = u[0]
-                out = [v[0] + v[1]*self.tau + 0.5*_u*self.tau**2, v[1] + _u*self.tau]
-                index_out = self.symbolic_model.state_vector_to_symbol(out)
+                start = time.clock()
 
+                result = scipy.integrate.odeint(self.f, v, interval, args=(u, ))
+                delta1 += time.clock() - start
+
+                start = time.clock()
+                index_out = self.symbolic_model.state_vector_to_symbol(result[1])
+                delta2 += time.clock() - start
+
+                start = time.clock()
                 self.symbolic_model.set_transition(index_v, index_u, index_out)
+                delta3 += time.clock() - start
+
+        pass

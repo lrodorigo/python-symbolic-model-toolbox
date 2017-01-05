@@ -1,34 +1,39 @@
 import numpy as np
-
+import copy
 
 class SymbolicModelVar(object):
 
     def index_of_value(self, value):
         value = float(value)
+
         if value < self.min:
             return 0
 
-        index = int(np.math.floor((value - self.min) / self.step))
+        index = int((value - self.min) / self.step)
         min_idx = index
 
-        if min_idx > len(self._values):
+        if min_idx < 0:
+            return 0
+
+        if min_idx >= len(self._values):
             return len(self._values) - 1
 
         def _residual(index):
             return abs(self._values[index] - value)
-
+        """
         for i in range(-2, 2):
             tmp_idx = index + i
             if tmp_idx < 0:
                 continue
 
-            elif tmp_idx >= len(self._values):
+            if tmp_idx >= len(self._values) or min_idx >= len(self._values):
                 break
 
             if _residual(tmp_idx) < _residual(min_idx):
                 min_idx = tmp_idx
+        """
 
-        return min_idx
+        return min_idx if min_idx >= 0 else 0
 
     def _calculate_values(self):
         self._values = np.arange(self.min, self.eq, self.step)
@@ -46,6 +51,9 @@ class SymbolicModelVar(object):
         self._calculate_values()
 
     def __getitem__(self, item):
+        if item >= len(self._values):
+            return self._values[-1]
+
         return self._values[item]
 
     def __len__(self):
@@ -70,7 +78,6 @@ class TransictionDict(dict):
         return super(TransictionDict, self).__contains__(self._hash_vector(item))
 
     def __setitem__(self, k, v):
-        assert isinstance(k, list)
         return super(TransictionDict, self).__setitem__(self._hash_vector(k), v)
 
 class SymbolicModel(object):
@@ -80,6 +87,10 @@ class SymbolicModel(object):
         self.state_vars = []
         self.control_vars = []
         self.transitions = TransictionDict()
+
+    def add_same_spacing_vars(self, name_array, min, max, step, eq):
+        for n in name_array:
+            self.add_state_var(n, min, max, step, eq)
 
     def set_transition(self, start_state_symbol, control_symbol, end_state_symbol,):
 
@@ -114,11 +125,11 @@ class SymbolicModel(object):
 
     def state_symbol_to_vector(self, symbol):
         comp = [self.state_vars[i][symbol[i]] for i in range(len(self.state_vars))]
-        return comp
+        return np.array(comp)
 
     def control_symbol_to_vector(self, symbol):
         comp = [self.control_vars[i][symbol[i]] for i in range(len(self.control_vars))]
-        return comp
+        return np.array(comp)
 
     def add_state_var(self, name, min, max, step, eq=0.0):
         self.state_vars.append(SymbolicModelVar(len(self.state_vars), name, min, max, step, eq))
@@ -145,8 +156,8 @@ class SymbolicModel(object):
 
         while go:
             val = self.control_symbol_to_vector(indexes)
-            go = next_index()
             yield indexes, val
+            go = next_index()
 
     def iterate_over_states_values(self):
         indexes = [0 for _ in range(self.N)]
@@ -164,9 +175,11 @@ class SymbolicModel(object):
         go = True
 
         while go:
+            old_index = copy.copy(indexes)
             val = self.state_symbol_to_vector(indexes)
             go = next_index()
-            yield indexes, val
+
+            yield old_index, val
 
     @property
     def state_count(self):
