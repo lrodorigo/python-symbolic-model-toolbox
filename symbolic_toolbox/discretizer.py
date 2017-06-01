@@ -6,6 +6,10 @@ from symbolic_toolbox.base import SymbolicModel
 
 
 class SampledOdeModelBuilder(object):
+    """
+    This Ode Model Builder builds
+    Ordinary Differential Equations symbolic model.
+    """
 
     def __init__(self, symbolic_model, tau, f):
         assert hasattr(f, "__call__")
